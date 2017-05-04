@@ -14,14 +14,20 @@
       </div>
       <a href="/about.html">About</a>
     </nav>
+    <span class="logo-sub">Interactive Santeria Education Site</span>
     <div class="content">
       <div class="left">
-        <div class="cowries">
-        </div>
+        <div class="cowries"></div>
+        <h2>Discover Your Destined Orisha</h2>
       </div>
       <span></span>
       <div class="right">
-
+        <p>What color do you prefer?</p>
+        <p>Where would you prefer to be?</p>
+        <p>Which food item do you prefer?</p>
+        <img src="quiz.png" alt="">
+        <h2>Which Orisha Do You Resonate With?</h2>
+        <h3>Take The Quiz!</h3>
       </div>
     </div>
   </body>
@@ -31,8 +37,34 @@
 
     $("nav").animateCSS("tada");
     $(".content").animateCSS("fadeInDown");
+
     $(".left").hover(function () {
       replaceShells();
+    });
+
+    $(".left").click(function() {
+      window.location = "/orisha.html";
+    });
+
+    $(".right").click(function() {
+      $(".right").find("h2").text("Feature Coming Soon!");
+      $(".right").find("h3").text("Try Divination!");
+      setTimeout(function() {
+        $(".right").find("h2").text("Which Orisha Do You Resonate With?");
+        $(".right").find("h3").text("Take The Quiz!");
+      }, 5000);
+    });
+
+    $(".right").hover(function () {
+      $(".right p:nth-child(1)").text("Red");
+      $(".right p:nth-child(2)").text("The River");
+      $(".right p:nth-child(3)").text("Chocloate Pudding");
+    });
+
+    $(".right").mouseleave(function () {
+      $(".right p:nth-child(1)").text("What color do you prefer?");
+      $(".right p:nth-child(2)").text("Where would you prefer to be?");
+      $(".right p:nth-child(3)").text("Which food item do you prefer?");
     });
 
     var placeShells = function () {
@@ -55,6 +87,7 @@
     }
 
     placeShells();
+    console.log($(".cowries img").length)
 
   </script>
 </html>

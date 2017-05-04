@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Orisha.net</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/animate.css">
+    <style media="screen">
+
+    </style>
+  </head>
+  <body>
+    <div class="black"></div>
+    <div class="cover"></div>
+    <nav>
+      <a href="/">Home</a>
+      <div class="logo">
+        <span class="text">Orisha</span><span class="subtext">.net</span>
+      </div>
+      <a href="/about.html">About</a>
+    </nav>
+    <span class="logo-sub">Interactive Santeria Education Site</span>
+    <div class="orisha-content">
+      <div class="info">
+        <div class="orisha">
+          <h1 id="name"></h1>
+          <span id="saint"></span> <br>
+          <span id="color"></span> <br>
+          <span id="number"></span> <br>
+          <p id="description"></p>
+          <a id="link" target="_blank" href=""><p>Learn more...</p></a>
+        </div>
+      </div>
+      <div class="photo">
+
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+  <script src="jquery.animatecss.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+
+    $("nav").animateCSS("tada");
+
+    $.get("/orishas.json", function(data) {
+      obj = data;
+
+      var count = Object.keys(obj).length;
+      var random = Object.keys(obj)[Math.floor(Math.random() * count)];
+
+      $("#name").text(random);
+      $("#saint").text(obj[random].saint);
+      $("#color").text(obj[random].colors);
+      $("#number").text(obj[random].numbers);
+      $("#description").text(obj[random].description);
+
+      if (!obj[random].link == "") {
+        $("#link").attr("href", obj[random].link);
+      } else {
+        $("#link").hide();
+      }
+
+      if (!obj[random].image == "") {
+        $(".photo").css("background-image", "url('" + obj[random].image + "')")
+      } else {
+        $("#link").hide();
+      }
+
+      if (obj[random].bg == "#FFEE58" || obj[random].bg == "#FFFFFF") {
+        $(".info").css("background-color", obj[random].bg);
+        $(".info").css("color", "black");
+        $("#link").css("color", "black");
+      } else {
+        $(".info").css("background-color", obj[random].bg);
+      }
+
+      console.log(obj[random])
+    });
+
+  </script>
+</html>
