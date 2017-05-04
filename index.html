@@ -3,8 +3,58 @@
   <head>
     <meta charset="utf-8">
     <title>Orisha.net</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/animate.css">
   </head>
   <body>
-    <h1>Orisha.net</h1>
+    <nav>
+      <a href="/">Home</a>
+      <div class="logo">
+        <span class="text">Orisha</span><span class="subtext">.net</span>
+      </div>
+      <a href="/about.html">About</a>
+    </nav>
+    <div class="content">
+      <div class="left">
+        <div class="cowries">
+        </div>
+      </div>
+      <span></span>
+      <div class="right">
+
+      </div>
+    </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+  <script src="jquery.animatecss.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+
+    $("nav").animateCSS("tada");
+    $(".content").animateCSS("fadeInDown");
+    $(".left").hover(function () {
+      replaceShells();
+    });
+
+    var placeShells = function () {
+      $(".cowries").empty();
+      for (var i = 0; i < 16; i++) {
+        $(".cowries").append('<img src="cowry-art-2.png">');
+        var current = $(".cowries img").last();
+        current.css("top", Math.floor((Math.random() * 300))+"px");
+        current.css("left", Math.floor((Math.random() * 300))+"px");
+        current.css("transform", "rotate(" + Math.floor((Math.random() * 360)) + "deg)");
+      }
+    }
+
+    var replaceShells = function () {
+      $(".cowries img").each(function() {
+        $(this).css("top", Math.floor((Math.random() * 300))+"px");
+        $(this).css("left", Math.floor((Math.random() * 300))+"px");
+        $(this).css("transform", "rotate(" + Math.floor((Math.random() * 360)) + "deg)");
+      });
+    }
+
+    placeShells();
+
+  </script>
 </html>
